@@ -1,0 +1,54 @@
+import java.util.Scanner;
+class Main
+{
+    public static String calculateGrade(double average) 
+    {
+        if (average >= 90) 
+        {
+            return "A";
+        }
+        else if (average >= 80) 
+        {
+            return "B";
+        } 
+        else if (average >= 70) 
+        {
+            return "C";
+        }
+        else if (average >= 60)
+        {
+            return "D";
+        } else
+        {
+            return "F";
+        }
+    }
+    public static void main(String[] args) 
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the number of subjects: ");
+        int numberOfSubjects = scan.nextInt();
+        double[] marks = new double[ numberOfSubjects ];
+        double totalMarks = 0;
+        for (int i = 0; i <  numberOfSubjects ; i++) 
+        {
+            System.out.println("Enter marks obtained each subject " + (i + 1) + " out of 100: ");
+            double score = scan.nextDouble();
+            while (score < 0 || score > 100) 
+            {
+                System.out.println("Invalid marks Please enter the marks between 0 and 100.");
+                System.out.print("Enter marks obtained in subject " + (i + 1) + " out of 100: ");
+                score = scan.nextDouble();
+            }
+            marks[i] = score;
+            totalMarks += score;
+        }
+        double averagePercentage = totalMarks/ numberOfSubjects;
+        String grade = calculateGrade(averagePercentage);
+        System.out.println("Results:");
+        System.out.println("Total Marks:"+totalMarks);
+        System.out.printf("Average Percentage: %.2f%%%n", averagePercentage);
+        System.out.println("Grade: " + grade);
+        scan.close();
+    }
+}
